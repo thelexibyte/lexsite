@@ -42,6 +42,7 @@ jobs:
           bundle exec jekyll build \
             --trace \
             --verbose
+          bundle exec jekyll build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
