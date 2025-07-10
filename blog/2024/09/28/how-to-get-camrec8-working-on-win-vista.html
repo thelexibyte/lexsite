@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to get Camtasia Recorder 8 working on Windows Vista ~ The LexSite</title>
+    <link rel="stylesheet" href="/mdl/material.min.css">
+    <meta name="fediverse:creator" content="@lexibyte@wetdry.world">
+    <meta property="og:title" content="How to get Camtasia Recorder 8 working on Windows Vista ~ LexBlog">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="Why are you using Windows Vista for this stuff~">
+    <meta property="og:url" content="/blog/2024/09/28/how-to-get-camrec8-working-on-win-vista.html">
+    <meta name="theme-color" content="#761600">
+    <meta content="website" property="og:type">
+
+    <script src="/mdl/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <script src="/resources/js/buildnumber.js"></script> 
+    
+    <script src="/resources/js/main.js"></script> 
+    <script src="/resources/js/newbuild.js"></script> 
+</head>
+<body>
+    <!-- Always shows a header, even in smaller screens. -->
+<!-- Uses a transparent header that draws on top of the layout's background -->
+<style>
+html {
+  background-image: url(/img/bg1.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.demo-layout-transparent {
+  background: inherit;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
+/* 
+
+No longer needed, MDL has its own implementation of it.
+
+@media screen and (min-width:1081px) {
+  .is-display-none-widescreen,
+  .is-hidden-widescreen {
+    display:none!important;
+  }
+}
+
+@media screen and (max-width:1080px) {
+  .is-display-none-mobile,
+  .is-hidden-mobile {
+    display:none!important;
+  }
+}
+
+*/
+
+
+#nohover:hover {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.mdl-layout__header, .is-casting-shadow {
+    display:block !important;
+    word-wrap: normal;
+}
+
+@media screen and (max-width:1080px) {
+  .is-display-none-mobile,
+  .is-hidden-mobile {
+    display:none!important;
+  }
+}
+
+.mdl-layout__drawer {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  color:white !important;
+  border-color: none;
+  border-right: 0px;
+}
+
+.mdl-navigation__link {
+  color:white !important;
+  
+}
+
+#yeshover:hover {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+#title-wscr {
+  margin-left: -3.5% !important;
+}
+
+#copywscr {
+  text-align: center !important;
+  color: white;
+}
+
+.mdl-shadow--1dp {
+  text-shadow:
+    0 2px 2px rgba(0,0,0,0.4),
+    0 1px 4px rgba(0,0,0,0.3);
+}
+</style>
+
+<div class="demo-layout-transparent mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--transparent">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title" id="title-wscr">LexBlog</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation" id="nohover">
+        <a class="mdl-navigation__link" href="/blog">Go Back...</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+    <span class="mdl-layout-title">LexBlog</span>
+    <nav class="mdl-navigation" >
+        <a class="mdl-navigation__link" id="yeshover" href="/blog">Go Back...</a>
+	<span style="padding-left:5.5%; color:white"><br>Developer Test Preview<br><br>LexSite Alpha 1<br>Build <span id="version-display">MAJOR.MINOR.BUILD.private/LAB_DEP(user).YYmmDD-HHss</span><br>&copy;2025 Lexibyte<br><br>Source code licensed under <a style="font-weight: normal;" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Creative Commons Attribution-ShareAlike 4.0</a></span>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+  <div class="box mdl-shadow--8dp" style="background-color: rgba(255,255,255,0.1); backdrop-filter: blur(25px); width:96%; justify-content: center; display: block; margin: 0 auto; padding: 8px;">
+    <div class="container mdl-shadow--1dp" style="font-family: Roboto; color: white; margin-left: 15px; margin-right: 15px; margin-top: 15px; margin-bottom: 15px; text-align: center;">
+      <h4>How to get Camtasia Recorder 8 working on Windows Vista</h2>
+      <p>28 Sep 2024</p>
+      <div class="container" style="text-align: left;">
+      <p>(<em>this is just a filler post as <a href="https://youtube.com/AzWtlbS2qJM">i uploaded a video today</a>, so why not give you guys some more stuffy content? :)</em>)</p>
+
+<p>Ok so you’ve decided to get into video editng and YouTube video making and all that stuff with your good ol’ Windows Vista machine, great!!
+<img src="/blog/img/2024-09-28/camrec8%201.JPG" alt="" style="max-width: 100; height: auto;" /></p>
+
+<p>You chose Camtasia Studio as your video editor, which has A BUILT-IN RECORDER FOR YOUR SCREEN?!?!?!?
+(ok it’s not that deep but okay)</p>
+
+<p>And when you’re about to film your “”"”tutorial””””, you get greeted by this error…</p>
+
+<p><img src="/blog/img/2024-09-28/camrec8%202.JPG" alt="" style="max-width: 100%; height: auto;" /></p>
+
+<p>Well today i’m gonna walkthrough you on how to fix this annoying error (side note: this only happens on Windows Vista no matter what Service Pack you’re in, and it <em>only</em> happen on Vista, XP, 7 and up do not have this problem…)</p>
+
+<p>On the desktop, press on your keyboard the keys (oh wow the irony lmao) Win + R, this should open up</p>
+
+<p><img src="/blog/img/2024-09-28/camrec8%203.JPG" alt="" style="max-width: 100%; height: auto;" /></p>
+
+<p>As you can see i already have that path written, but be sure to write that in in the run box: <code class="language-plaintext highlighter-rouge">C:\Program Files (x86)\TechSmith\Camtasia Studio 8</code></p>
+
+<p>After that, select the following program, double-click it and click “Properties”</p>
+
+<p><img src="/blog/img/2024-09-28/camrec8%204.JPG" alt="" style="max-width: 100%; height: auto;" /></p>
+
+<p><em>image showing CamRecorder.exe being selected in Windows Explorer (sorry for the badly drawn arrow lmaooo)</em></p>
+
+<p>After that, chose the “Compatibility” tab on the window and click “Show settings for all users” or smething similar (<em>sorry that it’s in Spanish i use(d to use) Spanish Windows…</em>)</p>
+
+<p><img src="/blog/img/2024-09-28/camrec8%205.JPG" alt="" style="max-width: 100%; height: auto;" /></p>
+
+<p>Another window should open up, just tick the “Run this program as an administrator” checkbox, then click OK until you’re back to the Windows Explorer window</p>
+
+<p><img src="/blog/img/2024-09-28/camrec8%206.JPG" alt="" style="max-width: 100%; height: auto;" /></p>
+
+<p>Then launch Camtasia Recorder as usual, and it should open up just fine, congratulations! you just fixed that one server referall error! :D</p>
+
+<p><img src="/blog/img/2024-09-28/camrec8%207.JPG" alt="" style="max-width: 100%; height: auto;" /></p>
+
+<p>Now just continue your recording and video editing as usual!</p>
+
+<p><em>Note: Applying the compatibility settings under Windows XP SP2 may also work, but it’ll lack audio support when recording, so this is better if you are recording something audio focused or anything else related to audio.</em></p>
+
+
+      </div>
+    </div>
+  </div>
+  <p></p>
+  <p id="copywscr" class="mdl-shadow--1dp mdl-layout--large-screen-only">
+    <br>Developer Test Preview<br>
+    <br>LexSite Alpha 1
+    <br>Build <span id="version-displayw">MAJOR.MINOR.BUILD.private/LAB_DEP(user).YYmmDD-HHss</span>
+    <br>&copy;2025 Lexibyte<br>
+    <br>Source code licensed under <a style="font-weight: normal;" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Creative Commons Attribution-ShareAlike 4.0</a><br>
+</p>
+  </main>
+</div>
+</body>
+</html>

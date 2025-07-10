@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booting from installation media without a USB ~ The LexSite</title>
+    <link rel="stylesheet" href="/mdl/material.min.css">
+    <meta name="fediverse:creator" content="@lexibyte@wetdry.world">
+    <meta property="og:title" content="Booting from installation media without a USB ~ LexBlog">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="It's actually possible">
+    <meta property="og:url" content="/blog/2025/04/06/booting-from-install-media-without-usb.html">
+    <meta name="theme-color" content="#761600">
+    <meta content="website" property="og:type">
+
+    <script src="/mdl/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <script src="/resources/js/buildnumber.js"></script> 
+    
+    <script src="/resources/js/main.js"></script> 
+    <script src="/resources/js/newbuild.js"></script> 
+</head>
+<body>
+    <!-- Always shows a header, even in smaller screens. -->
+<!-- Uses a transparent header that draws on top of the layout's background -->
+<style>
+html {
+  background-image: url(/img/bg1.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.demo-layout-transparent {
+  background: inherit;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
+/* 
+
+No longer needed, MDL has its own implementation of it.
+
+@media screen and (min-width:1081px) {
+  .is-display-none-widescreen,
+  .is-hidden-widescreen {
+    display:none!important;
+  }
+}
+
+@media screen and (max-width:1080px) {
+  .is-display-none-mobile,
+  .is-hidden-mobile {
+    display:none!important;
+  }
+}
+
+*/
+
+
+#nohover:hover {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.mdl-layout__header, .is-casting-shadow {
+    display:block !important;
+    word-wrap: normal;
+}
+
+@media screen and (max-width:1080px) {
+  .is-display-none-mobile,
+  .is-hidden-mobile {
+    display:none!important;
+  }
+}
+
+.mdl-layout__drawer {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  color:white !important;
+  border-color: none;
+  border-right: 0px;
+}
+
+.mdl-navigation__link {
+  color:white !important;
+  
+}
+
+#yeshover:hover {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+#title-wscr {
+  margin-left: -3.5% !important;
+}
+
+#copywscr {
+  text-align: center !important;
+  color: white;
+}
+
+.mdl-shadow--1dp {
+  text-shadow:
+    0 2px 2px rgba(0,0,0,0.4),
+    0 1px 4px rgba(0,0,0,0.3);
+}
+</style>
+
+<div class="demo-layout-transparent mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--transparent">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title" id="title-wscr">LexBlog</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation" id="nohover">
+        <a class="mdl-navigation__link" href="/blog">Go Back...</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+    <span class="mdl-layout-title">LexBlog</span>
+    <nav class="mdl-navigation" >
+        <a class="mdl-navigation__link" id="yeshover" href="/blog">Go Back...</a>
+	<span style="padding-left:5.5%; color:white"><br>Developer Test Preview<br><br>LexSite Alpha 1<br>Build <span id="version-display">MAJOR.MINOR.BUILD.private/LAB_DEP(user).YYmmDD-HHss</span><br>&copy;2025 Lexibyte<br><br>Source code licensed under <a style="font-weight: normal;" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Creative Commons Attribution-ShareAlike 4.0</a></span>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+  <div class="box mdl-shadow--8dp" style="background-color: rgba(255,255,255,0.1); backdrop-filter: blur(25px); width:96%; justify-content: center; display: block; margin: 0 auto; padding: 8px;">
+    <div class="container mdl-shadow--1dp" style="font-family: Roboto; color: white; margin-left: 15px; margin-right: 15px; margin-top: 15px; margin-bottom: 15px; text-align: center;">
+      <h4>Booting from installation media without a USB</h2>
+      <p>06 Apr 2025</p>
+      <div class="container" style="text-align: left;">
+      <p>Yes, it’s actually possible, and today I’ll show you how.</p>
+
+<p>First things first, your computer needs to have UEFI enabled, as there aren’t any good tricks for BIOS (that I am aware of)</p>
+
+<p>And before you say so, yes, I was a Legacy BIOS user for ~5 years, but in those 5 years, I haven’t found anythin’ other than <a href="https://unetbootin.github.io">Unetbootin</a>, but today we are not gonna talk about that.</p>
+
+<p>There are a couple of methods to boot from install media without a USB, but today I’m gonna give you the most simple method I could find. Scared of rEFInd? No problem!</p>
+
+<h4 id="getting-ground-ready">Getting ground ready</h4>
+
+<p>First of all, get your installation ISO up and ready, Linux and Windows, or any OS that has the EFI files structured within <code class="language-plaintext highlighter-rouge">efi\boot</code> by default will work.</p>
+
+<p>Go ahead to Disk Management (<code class="language-plaintext highlighter-rouge">diskmgmt.msc</code>) and shrink any basic data partition to the size of your installation ISO (for example, if your ISO is 4.7GB, make the partition 4.7GB), in my case, since I will use Kubuntu 24.04 LTS, I will make the partition 4.4GB, just in case.</p>
+
+<p><img src="/blog/img/2025-04-06/diskmgmtresults.png" alt="Disk Management window showing the results of the operation." /></p>
+
+<p>You should now have a 4.4GB FAT32 partition, now get your ISO, open it via any file archiving utility like <a href="https://7zip.org">7-Zip</a> or <strong>mount it via Windows’ Image Burner</strong> (<em>if you’re on Windows 10 or 11</em>).</p>
+
+<p><img src="/blog/img/2025-04-06/7zipfilecontents.png" alt="7-Zip File Manager showing the contents of the Kubuntu 24.04.2 LTS ISO" /></p>
+
+<h4 id="copying-files-for-installation">Copying files for installation</h4>
+
+<p>With the files opened in the file explorer, copy them to the root of the FAT32 partition.</p>
+
+<p>With 7-Zip, the dialog should look like this</p>
+
+<p><img src="/blog/img/2025-04-06/7zipcopying.png" alt="7-Zip copying the files from the ISO to E:" /></p>
+
+<p>….Then you’re all set! Next up reboot your computer and press F12 (or the boot menu keybind the POST screen should tell you), if done correctly, it should show the model of your hard drive, then the partition number (FYI the Windows partition is shown as Windows Boot Manager).</p>
+
+<p>Most firmwares should directly boot from it, due to the presence of a .efi file on <code class="language-plaintext highlighter-rouge">efi\boot</code>, which will be detected as a bootable entry.</p>
+
+<p>Now continue your installation procedure as usual, you’re all good to go!</p>
+
+<h4 id="some-limitations">Some limitations</h4>
+
+<p>If you want to try this on virtualizators like VMware, you’re out of luck, its boot menu doesn’t seem to show the partition, and it defaults to Windows Boot Manager (or any boot manager installed). If no OS is installed yet the partition is present, it will time out and try to boot from the network. I’m not so sure if the EFI shell will help with it, but if you manage to get it working, I’ll be sure to edit this post.</p>
+
+<p>I’ve yet not tested on other computer with UEFI firmware, so I am not sure if it works on ALL UEFI hardware, if it doesn’t work, don’t blame me, blame your PC manufacterer.</p>
+
+<p>Well now I’m gonna go, Horibyte signing off.</p>
+
+
+      </div>
+    </div>
+  </div>
+  <p></p>
+  <p id="copywscr" class="mdl-shadow--1dp mdl-layout--large-screen-only">
+    <br>Developer Test Preview<br>
+    <br>LexSite Alpha 1
+    <br>Build <span id="version-displayw">MAJOR.MINOR.BUILD.private/LAB_DEP(user).YYmmDD-HHss</span>
+    <br>&copy;2025 Lexibyte<br>
+    <br>Source code licensed under <a style="font-weight: normal;" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Creative Commons Attribution-ShareAlike 4.0</a><br>
+</p>
+  </main>
+</div>
+</body>
+</html>
