@@ -3,10 +3,12 @@ name: insert cool name here
 on:
   push:
     branches:
-      - main 
+      - main
 
 permissions:
-  contents: write # Needed for pushing to gh-pages AND for committing back to main
+  # contents: read is sufficient as we are not committing back to main
+  # but contents: write is needed for peaceiris/actions-gh-pages for 'gh-pages' branch
+  contents: write 
   pages: write
   id-token: write
 
@@ -17,35 +19,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          # This is CRUCIAL: checkout the main branch with full history
-          # and ensure the GITHUB_TOKEN has write permission for the main branch.
-          persist-credentials: false # Important for peaceiris/actions-gh-pages
-          fetch-depth: 0 # Fetch all history if you ever need Git history based build numbers
-
-      - name: Configure Git for Committing
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
-
-      - name: Increment Build Number and Commit
-        id: increment_build
-        run: |
-          BUILD_FILE="version.txt"
-          CURRENT_BUILD=0
-          if [ -f "$BUILD_FILE" ]; then
-            CURRENT_BUILD=$(cat "$BUILD_FILE")
-          fi
-          NEW_BUILD=$((CURRENT_BUILD + 1))
-          echo "$NEW_BUILD" > "$BUILD_FILE"
-          echo "NEW_BUILD=$NEW_BUILD" >> $GITHUB_OUTPUT # Set as output for subsequent steps
-
-          git add "$BUILD_FILE"
-          git commit -m "ci: Bump build number to $NEW_BUILD [skip ci]" || echo "No changes to commit"
-          git push origin main || echo "Failed to push build number update (might be already pushed by another run)"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure token is available for git push
+        # No need for specific fetch-depth or persist-credentials here
+        # since we're not manipulating git state on main from the action.
 
       - name: Set up Ruby 3.2.3
         uses: ruby/setup-ruby@v1
@@ -61,12 +36,12 @@ jobs:
 
       - name: Build Jekyll site
         run: |
+          # Your _plugins/build.rb will automatically read version.txt from the repo,
+          # use that number, and generate build_info.js.
+          # It will NOT increment/write back because GITHUB_ACTIONS env var is set.
           bundle exec jekyll build \
             --trace \
             --verbose
-        env:
-          # Pass the incremented build number from the previous step's output
-          JEKYLL_BUILD_NUMBER: ${{ steps.increment_build.outputs.NEW_BUILD }} 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
