@@ -5,54 +5,43 @@ require 'jekyll'
 module Jekyll
   class ExtBuildInfoGenerator < Generator
     safe true
-    priority :highest
+    priority :highest # Ensure it runs early
 
     def generate(site)
-      # Change this line:
-      # It now points to the project root, not inside 'resources'
-      build_number_file_path = File.join(site.dest, 'version.txt') # Target the destination for persistence
-      # Or, if you want it to be *always* in the source root:
-      # build_number_file_path = File.join(site.source, 'version.txt')
+      Jekyll.logger.info "BuildInfo:", "Plugin 'ExtBuildInfoGenerator' started."
 
-      # Let's use site.source to keep the original file in the source directory and prevent accidental deletion
-      # during clean builds. Since it's excluded, Jekyll won't watch it.
-      build_number_file_path = File.join(site.source, 'version.txt')
-
-      current_incremental_number = 0
-
-      begin
-        if File.exist?(build_number_file_path)
-          current_incremental_number = File.read(build_number_file_path).to_i
-        end
-      rescue => e
-        Jekyll.logger.error "BuildInfo Error:", "Failed to read version.txt from root: #{e.message}. Using 0."
-        current_incremental_number = 0
+      # The build_patch_number will now be directly passed from the GitHub Action
+      # based on the incremented value read/written by the workflow script itself.
+      build_patch_number = ENV['JEKYLL_BUILD_NUMBER']
+      if build_patch_number.nil? || build_patch_number.empty?
+        # Fallback for local development if running `jekyll serve` directly without setting ENV
+        build_patch_number = Time.now.strftime("%s") # Unix timestamp
+        Jekyll.logger.info "BuildInfo:", "Using local fallback for patch number (ENV['JEKYLL_BUILD_NUMBER'] not set): #{build_patch_number}"
+      else
+        Jekyll.logger.info "BuildInfo:", "Using GitHub Actions provided patch number: #{build_patch_number}"
       end
+      
+      # Ensure it's an integer for the final output
+      build_patch_number = build_patch_number.to_i 
 
-      current_incremental_number += 1
+      # --- FOR GLOBAL_BUILD_TIMESTAMP ---
+      # Set the timezone to Tegucigalpa (America/Tegucigalpa), which is UTC-06:00 (CST)
+      utc_now = Time.now.utc
+      cst_offset_seconds = -6 * 3600
+      cst_time = utc_now + cst_offset_seconds
+      timestamp = cst_time.strftime("%y%m%d-%H%M")
+      Jekyll.logger.info "BuildInfo:", "Generated timestamp: #{timestamp} (CST)"
 
-      # We can simplify the write logic now, as the file is excluded from watching.
-      # It will write every time the plugin runs, but Jekyll won't re-trigger *itself* because of this file.
-      begin
-        File.write(build_number_file_path, current_incremental_number.to_s)
-        Jekyll.logger.info "BuildInfo Version 0.1:", "A Ruby plugin for LexSite's build number generation."
-        Jekyll.logger.info "", "Copyright (C) 2025 Lexibyte"
-        Jekyll.logger.info "BuildInfo:", "Incremental build number persisted to disk (root): #{current_incremental_number}"
-      rescue => e
-        Jekyll.logger.error "BuildInfo Error:", "Failed to write version.txt to root: #{e.message}. Build number not persisted."
-      end
-
-
-      timestamp = Time.now.strftime("%y%m%d-%H%M")
-
-      site.config['ext_build_info'] = {
+      # --- INJECTING DATA ---
+      # Create or access the 'build_info' hash under site.data
+      site.data['ext_build_info'] = {
         'major' => 0,
         'minor' => 1,
-        'patch' => current_incremental_number,
+        'patch' => build_patch_number,
         'timestamp' => timestamp
       }
 
-      Jekyll.logger.info "BuildInfo:", "Ext Build Info loaded into site.config: #{site.config['ext_build_info'].inspect}"
+      Jekyll.logger.info "BuildInfo:", "Ext Build Info loaded into site.data: #{site.data['ext_build_info'].inspect}"
     end
   end
 end
